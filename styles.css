@@ -148,26 +148,6 @@ h1, h2, h3, .h2 { font-family: var(--serif); color: var(--white); font-weight: 4
 }
 .cart__badge.bump { animation: bump .4s var(--ease); }
 @keyframes bump { 50% { transform: scale(1.45); } }
-.login-btn {
-  position: relative; display: inline-flex; align-items: center; gap: 8px;
-  padding: 9px 18px; border-radius: 999px;
-  font-size: 14px; font-weight: 600; color: #fff; white-space: nowrap;
-  background: linear-gradient(160deg, rgba(255,255,255,.12), rgba(255,255,255,.03));
-  border: 1.5px solid rgba(255,255,255,.35);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 8px 20px rgba(0,0,0,.25);
-  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-  transition: border-color .3s var(--ease), background .3s var(--ease), box-shadow .3s var(--ease), transform .3s var(--ease);
-}
-.login-btn svg { transition: transform .3s var(--ease); }
-.login-btn:hover {
-  border-color: rgba(229,9,20,.8);
-  background: linear-gradient(160deg, rgba(229,9,20,.22), rgba(229,9,20,.06));
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 0 22px rgba(229,9,20,.45);
-  transform: translateY(-2px);
-}
-.login-btn:hover svg { transform: scale(1.1); }
-.login-btn:active { transform: scale(.97); }
-.login-btn:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
 .burger { display: none; width: 40px; height: 40px; position: relative; }
 .burger span { position: absolute; left: 10px; right: 10px; height: 2px; background: #fff; border-radius: 2px; transition: transform .3s var(--ease), top .3s; }
 .burger span:first-child { top: 15px; }
@@ -430,54 +410,32 @@ h1, h2, h3, .h2 { font-family: var(--serif); color: var(--white); font-weight: 4
 .footer__links { display: flex; gap: 26px; flex-wrap: wrap; }
 .footer__links a { font-size: 14px; color: var(--text); transition: color .2s; }
 .footer__links a:hover { color: #fff; }
-.socials { display: flex; gap: 10px; }
-.socials a { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; color: #fff; background: #333336; border: 1px solid var(--line); transition: background .3s, box-shadow .3s, transform .2s; }
-.socials a:hover { background: var(--red); box-shadow: var(--glow); transform: translateY(-2px); }
 .footer__copy { margin-top: 28px; }
 
-/* ---------- Login modal ---------- */
-.modal {
-  margin: auto; padding: 0; border: 0; background: none; color: var(--text);
-  width: min(420px, 100% - 2 * var(--gutter)); max-height: calc(100dvh - 32px);
-  overflow: visible;
-}
-.modal::backdrop { background: rgba(10,10,12,.6); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
-.modal[open] { animation: modalIn .45s var(--ease); }
-.modal[open]::backdrop { animation: fadeIn .35s var(--ease); }
-@keyframes modalIn { from { opacity: 0; transform: translateY(18px) scale(.96); } }
-@keyframes fadeIn { from { opacity: 0; } }
-.modal__card {
-  position: relative; display: flex; flex-direction: column; gap: 14px;
-  padding: clamp(26px, 5vw, 38px);
-  border-radius: 24px;
-  border: 1.5px solid rgba(255,255,255,.35);
-  background: linear-gradient(160deg, rgba(58,58,62,.92) 0%, rgba(28,28,31,.96) 100%);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.25), 0 30px 80px rgba(0,0,0,.6), 0 0 40px rgba(229,9,20,.15);
-}
-.modal__card .eyebrow { margin-bottom: 0; }
-.modal__sub { font-size: 14px; margin-bottom: 6px; }
+/* ---------- Panel close button ---------- */
 .modal__close {
   position: absolute; top: 14px; right: 14px; width: 36px; height: 36px;
   display: grid; place-items: center; border-radius: 50%; color: #fff;
   transition: background .2s, transform .3s var(--ease);
 }
 .modal__close:hover { background: rgba(255,255,255,.1); transform: rotate(90deg); }
-.field { display: flex; flex-direction: column; gap: 6px; }
-.field span { font-size: 13px; font-weight: 500; color: #fff; }
-.field input {
-  font: inherit; font-size: 15px; color: #fff;
-  padding: 12px 16px; border-radius: 12px;
-  background: rgba(20,20,22,.6); border: 1px solid rgba(255,255,255,.14);
-  transition: border-color .2s, box-shadow .2s;
+
+/* ---------- WhatsApp button ---------- */
+.wa-fab {
+  --fab: 58px;
+  position: fixed; z-index: 59;
+  right: max(var(--gutter), env(safe-area-inset-right));
+  bottom: calc(max(var(--gutter), env(safe-area-inset-bottom)) + var(--fab) + 12px);
+  width: var(--fab); height: var(--fab); border-radius: 50%;
+  display: grid; place-items: center; color: #fff;
+  background: radial-gradient(circle at 35% 30%, #3BE07A, #1DA851 75%);
+  border: 1.5px solid rgba(255,255,255,.35);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.3), 0 0 18px rgba(37,211,102,.45), 0 14px 30px rgba(0,0,0,.45);
+  transition: transform .3s var(--ease), box-shadow .3s var(--ease), opacity .3s var(--ease);
 }
-.field input::placeholder { color: var(--muted); }
-.field input:focus { outline: none; border-color: var(--red); box-shadow: 0 0 0 3px rgba(229,9,20,.25); }
-.modal__msg { min-height: 20px; font-size: 13px; }
-.modal__msg.is-error { color: var(--red-hover); }
-.modal__msg.is-ok { color: var(--green); }
-.modal__card .btn--block { margin-top: 0; }
-.modal__foot { text-align: center; }
-.modal__foot a:hover { text-decoration: underline; }
+.wa-fab:hover { transform: translateY(-3px) scale(1.04); box-shadow: inset 0 1px 0 rgba(255,255,255,.3), 0 0 28px rgba(37,211,102,.7), 0 18px 34px rgba(0,0,0,.5); }
+.wa-fab:active { transform: scale(.95); }
+.wa-fab:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
 
 /* ---------- Voice assistant ---------- */
 .va {
@@ -724,8 +682,8 @@ h1, h2, h3, .h2 { font-family: var(--serif); color: var(--white); font-weight: 4
   .logo { font-size: 20px; }
   .nav__inner { gap: 12px; }
   .nav__actions { gap: 8px; }
-  .login-btn { padding: 8px 14px; font-size: 13px; }
   .va__fab { width: 52px; height: 52px; }
+  .wa-fab { --fab: 52px; }
   .va__panel { padding: 18px; max-height: calc(100dvh - 110px); }
   .va__chips { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin-inline: -18px; padding-inline: 18px; }
   .va__chips::-webkit-scrollbar { display: none; }

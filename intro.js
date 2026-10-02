@@ -1,4 +1,4 @@
-// Kuljit • India — opening animation
+// Pollito's — opening animation
 // A fresh green chilli drops onto the hero dish under gravity, bounces once and settles as garnish.
 // Plays once per browser session; afterwards (or with reduced motion) the chilli is simply in place.
 import { animate } from "motion";
@@ -9,7 +9,7 @@ const shadow = document.getElementById("garnishShadow");
 const blurStd = document.getElementById("fallBlurStd");
 const visual = document.querySelector(".hero__visual");
 const dishImg = document.querySelector(".dish__plate img");
-const KEY = "kuljit:intro-played";
+const KEY = "pollitos:intro-played";
 
 const settle = () => {
   garnish.classList.add("is-settled");
